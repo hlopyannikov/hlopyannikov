@@ -7,12 +7,17 @@ if(empty($_POST["username"]) or empty($_POST["password"])){
 	include("bd.php");
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
-	$result = mysql_query("SELECT * FROM users  WHERE username='$username' and password='$password' LIMIT 1",$db);
-	if(mysql_num_rows($result) == 1){
-		echo "Congratulations, you are in.";
-	}
-	else{
-		exit("Sorry man, username or password incorrect.");
+	$sql = "SELECT * FROM users  WHERE username='$username' and password='$password' LIMIT 1";
+	
+	if($result = mysql_query($sql,$db)) {
+		if(mysql_num_rows($result) == 1){
+			echo "Congratulations, you are in.";
+		}
+		else{
+			exit("Sorry man, username or password incorrect.");
+		}
+	} else {
+		echo "Ошибон в mysql_query";
 	}
 }
 ?>

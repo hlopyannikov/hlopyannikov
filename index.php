@@ -1,6 +1,8 @@
 <?php
 error_reporting(E_ALL); 
+ini_set('display_errors',1);
 session_start();
+
 if(empty($_POST["username"]) or empty($_POST["password"])){
 	exit("Sorry, please fill all the fields.");
 } else {
